@@ -28,4 +28,8 @@ public class TransactionsService {
         }
         return Instant.now().minusSeconds(TRANSACTION_AGE_IN_SECONDS).isAfter(transaction.getTimestamp().toInstant());
     }
+
+    public void deleteAllTransactions(){
+        repository.deleteAll();
+    }
 }
