@@ -1,13 +1,13 @@
-package com.example.realtimestatisticsapi;
+package com.example.realtimestatisticsapi.statistics;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
-import com.example.realtimestatisticsapi.statistics.Statistics;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class StatisticsModelTests {
 
@@ -124,5 +124,10 @@ public class StatisticsModelTests {
         statistics.setCount(10);
         statistics.setSum(new BigDecimal("10"));
         assertEquals(new BigDecimal("1.00"), statistics.getAvg());
+    }
+
+    @AfterEach
+    public void tearDownEach(){
+        statistics = null;
     }
 }
