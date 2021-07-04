@@ -21,7 +21,7 @@ public class StatisticsModelTests {
 
     @Test
     void updateCount_whenCalled_shouldIncrementCountAttributeBy1() {
-        statistics.updateCount();
+        statistics.updateCount(1L);
         assertEquals(1, statistics.getCount());
     }
 

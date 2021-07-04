@@ -1,5 +1,6 @@
 package com.example.realtimestatisticsapi.transactions;
 
+import com.example.realtimestatisticsapi.statistics.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +13,14 @@ public class TransactionsService {
     private static final int TRANSACTION_AGE_IN_SECONDS = 60;
 
     @Autowired
+    StatisticsService statisticsService;
+
+    @Autowired
     TransactionsRepository repository;
 
-    public Transaction saveTransaction(Transaction transaction){
-        return repository.save(transaction);
+    public void saveTransaction(Transaction transaction){
+        statisticsService.registerTransaction(transaction);
+        repository.save(transaction);
     }
 
     public Collection<Transaction> getAllTransaction() {

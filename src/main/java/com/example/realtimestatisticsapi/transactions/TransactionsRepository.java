@@ -12,8 +12,8 @@ public class TransactionsRepository implements Repository<Transaction, UUID> {
 
     private final Map<UUID, Transaction> transactions = new ConcurrentHashMap<>();
 
-    public Transaction save(Transaction transaction) {
-        return transactions.put(transaction.getId(), transaction);
+    public void save(Transaction transaction) {
+        transactions.put(transaction.getId(), transaction);
     }
 
     public void deleteAll() {

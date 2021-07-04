@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TransactionsServiceTests {
 
@@ -37,7 +36,7 @@ public class TransactionsServiceTests {
 
     @Test
     public void isTransactionOld_whenCalledForTransactionWithTimestampOlderThan60Seconds_shouldReturnTrue(){
-        Transaction transaction = new Transaction(new Date(System.currentTimeMillis() - 1000 * 60), BigDecimal.ZERO);
+        Transaction transaction = new Transaction(new Date(System.currentTimeMillis() - 1000 * 60), null);
         assertTrue(service.isTransactionOld(transaction));
     }
 

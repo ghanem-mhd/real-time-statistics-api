@@ -69,4 +69,10 @@ public class TransactionsModelTests {
                 violation.getMessage());
         assertEquals("timestamp", violation.getPropertyPath().toString());
     }
+
+    @Test
+    public void getTransactionAgeInSeconds_whenCalled_shouldReturnTransactionsInSeconds(){
+        Transaction transactionInPast = new Transaction(new Date(System.currentTimeMillis() - 1000 * 40), null);
+        assertEquals(40, transactionInPast.getTransactionAgeInSeconds());
+    }
 }

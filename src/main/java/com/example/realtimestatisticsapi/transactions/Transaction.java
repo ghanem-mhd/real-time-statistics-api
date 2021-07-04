@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
@@ -58,4 +59,12 @@ public class Transaction {
     public int hashCode() {
         return Objects.hash(uuid);
     }
+
+    public long getTransactionAgeInSeconds(){
+        if (timestamp == null){
+            return 0;
+        }
+        return Instant.now().getEpochSecond() - timestamp.toInstant().getEpochSecond();
+    }
+
 }

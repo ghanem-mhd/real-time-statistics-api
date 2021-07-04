@@ -1,9 +1,7 @@
 package com.example.realtimestatisticsapi.statistics;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
-import java.util.Objects;
 
 public class Statistics {
 
@@ -66,14 +64,14 @@ public class Statistics {
     }
 
     public synchronized void update(BigDecimal value){
-        updateCount();
+        updateCount(1L);
         updateSum(value);
         updateMax(value);
         updateMin(value);
     }
 
-    public synchronized void updateCount(){
-        count++;
+    public synchronized void updateCount(long increment){
+        count = count + increment;
     }
 
     public synchronized void updateSum(BigDecimal value){
@@ -81,12 +79,18 @@ public class Statistics {
     }
 
     public synchronized void updateMax(BigDecimal value){
+        if (value == null){
+            return;
+        }
         if (max == null || value.compareTo(max) > 0){
             max = value;
         }
     }
 
     public synchronized void updateMin(BigDecimal value){
+        if (value == null){
+            return;
+        }
         if (min == null || value.compareTo(min) < 0){
             min = value;
         }

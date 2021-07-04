@@ -26,18 +26,18 @@ public class TransactionsController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public void createTransaction(@RequestBody @Valid Transaction transaction) throws TransactionInPastException {
-        Transaction savedTransaction = transactionService.saveTransaction(transaction);
+        transactionService.saveTransaction(transaction);
         if (transactionService.isTransactionOld(transaction)){
-            throw new TransactionInPastException("Transaction is old");
+            throw new TransactionInPastException(String.format("%s is old", transaction));
         }
-        LOGGER.info("Transaction {} saved", savedTransaction);
+        LOGGER.info("{} is saved", transaction.toString());
     }
 
     @ResponseStatus(NO_CONTENT)
     @ResponseBody
     @ExceptionHandler(TransactionInPastException.class)
     public void handleTransactionInPastException(TransactionInPastException ex) {
-        LOGGER.error("Exception!", ex);
+        LOGGER.info(ex.getMessage());
     }
 
     @ResponseStatus(BAD_REQUEST)
