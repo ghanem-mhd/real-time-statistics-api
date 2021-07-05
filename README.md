@@ -48,7 +48,7 @@ or
 
 ## Live Demo on Heroku
 
-https://real-time-statistics-api.herokuapp.com/
+Live endpoint is available at https://real-time-statistics-api.herokuapp.com/. To learm more about how to use the api read the [pdf](https://github.com/ghanem-mhd/real-time-statistics-api/blob/main/Junior_Backend_Engineer_-_Take_Home_Test.pdf).
 
 
 
